@@ -262,14 +262,14 @@ void edit(int sudoku[][9], int sudoku2[][9]){
   int row;
   int col;
   while(ans==0){
-  cout<<endl;
-  cout<<"Please choose the ROW of the desired number to edit: (0-8)";
-  cin>>row;
-  if((row>8)||(row<0)){
-    cout<<"ERROR: Please input a proper row to choose from. Starting over."<<endl;
     cout<<endl;
-    display(sudoku);
-    cout<<endl;
+    cout<<"Please choose the ROW of the desired number to edit: (0-8)";
+    cin>>row;
+    if((row>8)||(row<0)){
+      cout<<"ERROR: Please input a proper row to choose from. Starting over."<<endl;
+      cout<<endl;
+      display(sudoku);
+      cout<<endl;
     ans=0;
   }
   else{
