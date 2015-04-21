@@ -374,7 +374,7 @@ void option(int sudoku[][9], int sudoku2[][9]){
         display (sudoku);
       break;
       case 4:
-        cout << "Thank you for playing!";
+        cout << "Thank you for playing!" << endl;
         ans=1;
       break;
       default:
