@@ -356,7 +356,7 @@ void edit(int sudoku[][9], int sudoku2[][9]){
   }
 }
 void option(int sudoku[][9], int sudoku2[][9]){
-  int ans;
+  int ans=0;
   while (ans==0){
     cout << endl;
     cout << "Please choose an option you wish do perform:"<<endl;
