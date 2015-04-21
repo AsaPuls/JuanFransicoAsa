@@ -35,7 +35,7 @@ void display (int sudoku[][9]){
 }
 
 void erase (int sudoku[][9], int sudoku2[][9]){
-  int ans, row, col;
+  int ans=0, row, col;
   while (ans==0){
     cout << endl;
     cout << "Please choose the row of the desired number to erase: (0-8)";
