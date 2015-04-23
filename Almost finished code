@@ -13,34 +13,36 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <windows.h>
 #define RESET       "\033[0m"
+#define BOLDBLACK   "\033[1m\033[30m"
 #define BOLDGREEN   "\033[1m\033[32m"
 #define BOLDRED     "\033[1m\033[31m"
 #define BOLDMAGENTA "\033[1m\033[35m"
 #define BOLDCYAN    "\033[1m\033[36m"
+#define BOLDBLUE    "\033[1m\033[34m"
 using namespace std;
 
 void display (int sudoku[][9], int sudoku2[][9]){
   cout << endl;
-  cout << BOLDCYAN << "  0 1 2   3 4 5   6 7 8  " << RESET << endl;
+  cout << BOLDMAGENTA << "  0 1 2   3 4 5   6 7 8  " << RESET << endl;
   for (int row = 0 ; row<9 ; row++){
     if ((row==3)||(row==6)){
-      cout << BOLDMAGENTA << "  ------+-------+------" << RESET << endl;
+      cout << BOLDCYAN << "  ------+-------+------" << RESET << endl;
     }
-    cout << BOLDCYAN << row;
+    cout << BOLDMAGENTA << row << RESET;
     for (int column=0; column<9; column++){
       if ((column==3)||(column==6)){
-        cout << BOLDMAGENTA << " |" << RESET;
+        cout << BOLDCYAN << " |" << RESET;
       }
       cout << " ";
       if (sudoku2[row][column] != 0){
-        cout << BOLDRED << sudoku2[row][column] << RESET;
+          cout << BOLDBLUE << sudoku2[row][column] << RESET;
       }
       if (sudoku[row][column] != sudoku2[row][column]){
         if (sudoku[row][column] != 0){
-          cout << BOLDGREEN << sudoku[row][column] << RESET;
+          cout << BOLDGREEN << sudoku[row][column] << RESET;          }
         }
-      }
       if (sudoku[row][column] == 0){
         cout << RESET << sudoku2[row][column];
       }
@@ -56,8 +58,7 @@ void erase (int sudoku[][9], int sudoku2[][9]){
     cout << "Please choose the row of the desired number to erase: (0-8)";
     cin >> row;
     if ((row>8)||(row<0)){
-      cout << "ERROR: Please input a proper row to choose from. Starting over." << endl;
-      cout << endl;
+      cout << BOLDRED << "ERROR: Please input a proper row to choose from. Starting over." << RESET << endl << endl;
       display (sudoku,sudoku2);
       cout << endl;
       ans=0;
@@ -66,16 +67,14 @@ void erase (int sudoku[][9], int sudoku2[][9]){
       cout << "Please choose the column of the desired number to erase: ";
       cin >> col;
       if ((col>8)||(col<0)){
-        cout << "ERROR: Please input a proper column to choose from. Starting over."<<endl;
-        cout << endl;
+        cout << BOLDRED << "ERROR: Please input a proper column to choose from. Starting over." << RESET << endl << endl;
         display (sudoku,sudoku2);
         cout << endl;
         ans=0;
       }
       else{
         if (sudoku2[row][col]!=0){
-          cout << "YOU CAN'T ERASE THAT NUMBER" << endl;
-          cout << endl;
+          cout << BOLDRED << "YOU CAN'T ERASE THAT NUMBER" << RESET << endl << endl;
         }
         else{
           sudoku[row][col]=0;
@@ -96,8 +95,8 @@ void square1 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=0; rows<3;rows++){
       j1=j1+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the first square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the first square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j1=j1-1;
       }
     }
@@ -116,8 +115,8 @@ void square2 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=0; rows<3;rows++){
       j2=j2+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the second square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the second square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j2=j2-1;
       }
     }
@@ -136,8 +135,8 @@ void square3 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=0; rows<3;rows++){
       j3=j3+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the third square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the third square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j3=j3-1;
       }
     }
@@ -156,8 +155,8 @@ void square4 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=3; rows<6;rows++){
       j4=j4+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the fourth square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the fourth square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
       j4=j4-1;
       }
     }
@@ -176,8 +175,8 @@ void square5 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=3; rows<6;rows++){
       j5=j5+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the fifth square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the fifth square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j5=j5-1;
       }
     }
@@ -196,8 +195,8 @@ void square6 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=3; rows<6;rows++){
       j6=j6+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the sixth square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the sixth square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j6=j6-1;
       }
     }
@@ -216,8 +215,8 @@ void square7 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=6; rows<9;rows++){
       j7=j7+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the seventh square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the seventh square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j7=j7-1;
       }
     }
@@ -236,8 +235,8 @@ void square8 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=6; rows<9;rows++){
       j8=j8+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the eighth square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the eighth square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j8=j8-1;
       }
     }
@@ -256,8 +255,8 @@ void square9 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
     for (int rows=6; rows<9;rows++){
       j9=j9+1;
       if (num==sudoku[rows][co]){
-        cout << "That # is already in use in the fifth square!" << endl;
-        cout << "Row: " << rows << " col: " << co << endl;
+        cout << BOLDRED << "That # is already in use in the fifth square!" << endl;
+        cout << "Row: " << rows << " col: " << co << RESET << endl;
         j9=j9-1;
       }
     }
@@ -270,53 +269,56 @@ void square9 (int sudoku[][9], int sudoku2[][9], int row, int col, int num,int v
   cout << endl;
 }
 
+//void end (int sudoku[][9]){
+  //if (sudoku != 0)
+    //cout << BOLDMAGENTA << "YOU FINISHED THE SUDOKU!" << endl << BOLDCYAN << "CONGRATULATIONS" << RESET << endl;
+//}
 void edit (int sudoku[][9], int sudoku2[][9]){
   int ans=0, row, col;
   while (ans==0){
     cout << endl;
-    cout << "Please choose the ROW of the desired number to edit: (0-8)";
+    cout << "Please choose the " << BOLDBLACK << "ROW" << RESET << " of the desired number to edit: (0-8)";
     cin >> row;
     if ((row>8)||(row<0)){
-      cout << "ERROR: Please input a proper row to choose from. Starting over." << endl << endl;
+      cout << BOLDRED << "ERROR: Please input a proper row to choose from. Starting over." << RESET << endl << endl;
       display (sudoku,sudoku2);
       cout << endl;
       ans=0;
     }
     else{
-      cout << "Please choose the COLUMN of the desired number to edit: (0-8)";
+      cout << "Please choose the " << BOLDBLACK << "COLUMN" << RESET << " of the desired number to edit: (0-8)";
       cin >> col;
       if ((col>8)||(col<0)){
-        cout << "ERROR: Please input a proper column to choose from. Starting over." << endl << endl;
+        cout << BOLDRED << "ERROR: Please input a proper column to choose from. Starting over." << RESET << endl << endl;
         display (sudoku,sudoku2);
         cout << endl;
         ans=0;
       }
       else{
         if (sudoku2[row][col]!=0){
-          cout << "YOU CAN'T CHANGE THAT NUMBER" << endl << endl;
+          cout << BOLDRED << "YOU CAN'T CHANGE THAT NUMBER" << RESET << endl << endl;
           display (sudoku,sudoku2);
         }
         else{
           cout << "Please insert the number: ";
           int num;
           cin >> num;
-          if (num>9 || num<0){
-            cout << "THE NUMBER MUST BE BETWEEN 1 AND 9" << endl << endl;
-            display (sudoku,sudoku2);
+          if (num==0){
+            cout << BOLDRED << "THERE ISNT A NUMBER THERE ALREADY" << RESET << endl;
           }
-          else {
+          else if (num<10 && num>1){
             int v=0, c=0;
             for (int co=0; co<9; co++){ //Checks if the number exists inside the same row
               v=v+1;
               if (num==sudoku[row][co]){
-                cout << "That # is already in use in row: " << row << endl;
+                cout << BOLDRED << "That # is already in use in row: " << row << RESET << endl;
                 v=v-1;
               }
             }
             for (int ro=0; ro<9 ; ro++){ // Check if the number exists inside the same column
               c=c+1;
               if (num==sudoku[ro][col]){
-                cout << "That # is already in use in column: " << col << endl;
+                cout << BOLDRED << "That # is already in use in column: " << col << RESET << endl;
                 c=c-1;
               }
             }
@@ -364,6 +366,10 @@ void edit (int sudoku[][9], int sudoku2[][9]){
               }
             }
           }
+          else{
+            cout << BOLDRED << "THE NUMBER MUST BE BETWEEN 1 AND 9" << RESET << endl << endl;
+            display (sudoku,sudoku2);
+          }
   cout << endl;
   cout << "Do you wish to edit another number? (0-Yes/1-No):";
   cin >> ans;
@@ -372,9 +378,41 @@ void edit (int sudoku[][9], int sudoku2[][9]){
     }
   }
 }
-int main(){
-  int sudoku[9][9]= {{5,3,0,0,7,0,0,0,0},{6,0,0,1,9,5,0,0,0},{0,9,8,0,0,0,0,6,0},{8,0,0,0,6,0,0,0,3},{4,0,0,8,0,3,0,0,1},{7,0,0,0,2,0,0,0,6},{0,6,0,0,0,0,2,8,0},{0,0,0,4,1,9,0,0,5},{0,0,0,0,8,0,0,7,9}};
-  int sudoku2[9][9]= {{5,3,0,0,7,0,0,0,0},{6,0,0,1,9,5,0,0,0},{0,9,8,0,0,0,0,6,0},{8,0,0,0,6,0,0,0,3},{4,0,0,8,0,3,0,0,1},{7,0,0,0,2,0,0,0,6},{0,6,0,0,0,0,2,8,0},{0,0,0,4,1,9,0,0,5},{0,0,0,0,8,0,0,7,9}};
+void option (int sudoku[][9], int sudoku2[][9]){
+  int ans=0;
+  while (ans==0){
+    cout << endl;
+    cout << "Please choose an option you wish do perform:"<<endl;
+    cout << BOLDMAGENTA << "1" << RESET << "-Edit a cell, ";
+    cout << BOLDMAGENTA << "2" << RESET << "-Erase a cell, ";
+    cout << BOLDMAGENTA << "3" << RESET << "-Display Board, ";
+    cout << BOLDMAGENTA << "4" << RESET << "-Quit program: ";
+    int opt;
+    cin >> opt;
+    switch (opt){
+      case 1:
+        edit (sudoku,sudoku2);
+      break;
+      case 2:
+        erase (sudoku,sudoku2);
+      break;
+      case 3:
+        display (sudoku,sudoku2);
+      break;
+      case 4:
+        cout << "Thank you for playing!" << endl;
+        ans=1;
+      break;
+      default:
+        cout << BOLDRED << "That was not a valid option" << RESET << endl;
+        break;
+    }
+  }
+}
+
+int main (){
+  int sudoku[9][9] = {{5,3,0,0,7,0,0,0,0},{6,0,0,1,9,5,0,0,0},{0,9,8,0,0,0,0,6,0},{8,0,0,0,6,0,0,0,3},{4,0,0,8,0,3,0,0,1},{7,0,0,0,2,0,0,0,6},{0,6,0,0,0,0,2,8,0},{0,0,0,4,1,9,0,0,5},{0,0,0,0,8,0,0,7,9}};
+  int sudoku2[9][9] = {{5,3,0,0,7,0,0,0,0},{6,0,0,1,9,5,0,0,0},{0,9,8,0,0,0,0,6,0},{8,0,0,0,6,0,0,0,3},{4,0,0,8,0,3,0,0,1},{7,0,0,0,2,0,0,0,6},{0,6,0,0,0,0,2,8,0},{0,0,0,4,1,9,0,0,5},{0,0,0,0,8,0,0,7,9}};
   display (sudoku,sudoku2);
   option (sudoku,sudoku2);
   return 0;
