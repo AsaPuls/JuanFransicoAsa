@@ -54,8 +54,7 @@ void display (int sudoku[][9], int sudoku2[][9]){
 void erase (int sudoku[][9], int sudoku2[][9]){
   int ans=0, row, col;
   while (ans==0){
-    cout << endl;
-    cout << "Please choose the row of the desired number to erase: (0-8)";
+    cout << endl << "Please choose the " << BOLDBLACK << "ROW" << RESET " of the desired number to erase: (0-8)";
     cin >> row;
     if ((row>8)||(row<0)){
       cout << BOLDRED << "ERROR: Please input a proper row to choose from. Starting over." << RESET << endl << endl;
@@ -64,7 +63,7 @@ void erase (int sudoku[][9], int sudoku2[][9]){
       ans=0;
     }
     else{
-      cout << "Please choose the column of the desired number to erase: ";
+      cout << "Please choose the" << BOLDBLACK << "COLUMN" << RESET "of the desired number to erase: ";
       cin >> col;
       if ((col>8)||(col<0)){
         cout << BOLDRED << "ERROR: Please input a proper column to choose from. Starting over." << RESET << endl << endl;
