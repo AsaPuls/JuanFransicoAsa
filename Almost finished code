@@ -300,7 +300,7 @@ void edit (int sudoku[][9], int sudoku2[][9]){
           cout << "Please insert the number: ";
           int num;
           cin >> num;
-          if (num>9 || num<1){
+          if (num>9 || num<0){
             cout << "THE NUMBER MUST BE BETWEEN 1 AND 9" << endl << endl;
             display (sudoku,sudoku2);
           }
