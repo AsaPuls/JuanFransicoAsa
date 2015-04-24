@@ -305,7 +305,7 @@ void edit (int sudoku[][9], int sudoku2[][9]){
           if (num==0){
             cout << BOLDRED << "THERE ISNT A NUMBER THERE ALREADY" << RESET << endl;
           }
-          else if (num<10 && num>1){
+          else if (num<10 && num>0){
             int v=0, c=0;
             for (int co=0; co<9; co++){ //Checks if the number exists inside the same row
               v=v+1;
